@@ -1,0 +1,53 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title></title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width">
+<link rel="stylesheet" type="text/css" href="css/normalize.css">
+<link rel="stylesheet" href="css/main.css">
+<script src="js/_libs/puremvc-1.0.1.min.js"></script>
+<script src="js/_libs/mustache.min.js"></script>
+<script src="js/_libs/TagComponent.js"></script>
+<script src="js/ApplicationFacade.js"></script>
+<script src="js/controller/StartupCommand.js"></script>
+<script src="js/model/Moodle.js"></script>
+<script src="js/model/InitProxy.js"></script>
+
+<script src="js/model/QuestionProxy.js"></script>
+<script src="js/model/QuestionAnswersProxy.js"></script>
+<script src="js/model/QuestionAttemptStepDataProxy.js"></script>
+<script src="js/model/QuestionAttemptStepsProxy.js"></script>
+<script src="js/model/QuestionAttemptsProxy.js"></script>
+<script src="js/model/QuestionCalculatedOptionsProxy.js"></script>
+<script src="js/model/QuestionCalculatedProxy.js"></script>
+<script src="js/model/QuestionCategoriesProxy.js"></script>
+<script src="js/model/QuestionDatasetDefinitionsProxy.js"></script>
+<script src="js/model/QuestionDatasetItemsProxy.js"></script>
+<script src="js/model/QuestionHintsProxy.js"></script>
+<script src="js/model/QuestionMultianswerProxy.js"></script>
+<script src="js/model/QuestionMultichoiceProxy.js"></script>
+<script src="js/model/QuestionNumericalOptionsProxy.js"></script>
+<script src="js/model/QuestionNumericalUnitsProxy.js"></script>
+<script src="js/model/QuestionNumericalProxy.js"></script>
+<script src="js/model/QuestionRandomsamatchProxy.js"></script>
+<script src="js/model/QuestionSessionsProxy.js"></script>
+<script src="js/model/QuestionStatesProxy.js"></script>
+<script src="js/model/QuestionTruefalseProxy.js"></script>
+<script src="js/model/QuestionUsagesProxy.js"></script>
+<script src="js/model/QuizProxy.js"></script>
+<script src="js/model/QuizQuestionInstancesProxy.js"></script>
+
+<title>Moodle</title>
+</head>
+
+<body>
+<script type="text/javascript">
+    window.onload = function() {
+    ApplicationFacade.getInstance("Moodle").startup();
+    }
+</script>
+</body>
+</html>
