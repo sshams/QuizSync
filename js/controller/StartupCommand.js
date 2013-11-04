@@ -24,8 +24,8 @@ puremvc.define(
     execute: function(notification) {
 	    this.facade.registerProxy(new model.Moodle());
 	    this.facade.registerProxy(new model.InitProxy());
-	    this.facade.registerProxy(new model.QuestionProxy());
-	    this.facade.registerProxy(new model.QuestionAnswersProxy());
+
+	    
 	    this.facade.registerProxy(new model.QuestionAttemptStepDataProxy());
 	    this.facade.registerProxy(new model.QuestionAttemptStepsProxy());
 	    this.facade.registerProxy(new model.QuestionAttemptsProxy());
@@ -46,12 +46,10 @@ puremvc.define(
 	    this.facade.registerProxy(new model.QuestionTruefalseProxy());
 	    this.facade.registerProxy(new model.QuestionUsagesProxy());
 	    this.facade.registerProxy(new model.QuizProxy());
-	    this.facade.registerProxy(new model.QuizQuestionInstancesProxy());
+	    
 
 
-	    var questionProxy = this.facade.retrieveProxy(model.QuestionProxy.NAME),
-            questionAnswersProxy = this.facade.retrieveProxy(model.QuestionAnswersProxy.NAME),
-            questionAttemptStepDataProxy = this.facade.retrieveProxy(model.QuestionAttemptStepDataProxy.NAME),
+	    var questionAttemptStepDataProxy = this.facade.retrieveProxy(model.QuestionAttemptStepDataProxy.NAME),
             questionAttemptStepsProxy = this.facade.retrieveProxy(model.QuestionAttemptStepsProxy.NAME),
             questionAttemptsProxy = this.facade.retrieveProxy(model.QuestionAttemptsProxy.NAME),
             questionCalculatedProxy = this.facade.retrieveProxy(model.QuestionCalculatedProxy.NAME),
@@ -70,8 +68,21 @@ puremvc.define(
 	        questionStatesProxy = this.facade.retrieveProxy(model.QuestionStatesProxy.NAME),
         	questionTruefalseProxy = this.facade.retrieveProxy(model.QuestionTruefalseProxy.NAME),
         	questionUsagesProxy = this.facade.retrieveProxy(model.QuestionUsagesProxy.NAME),
-        	quizProxy = this.facade.retrieveProxy(model.QuizProxy.NAME),
-        	quizQuestionInstancesProxy = this.facade.retrieveProxy(model.QuizQuestionInstancesProxy.NAME);        	
+        	quizProxy = this.facade.retrieveProxy(model.QuizProxy.NAME);
+
+        	var qjson = '{"quizVO":{"id":"1","course":"2","name":"5th Grade Book 1 Quiz 1","intro":"","introformat":"1","timeopen":"0","timeclose":"0","timelimit":"0","overduehandling":"autoabandon","graceperiod":"0","preferredbehaviour":"deferredfeedback","attempts":"0","attemptonlast":"0","grademethod":"1","decimalpoints":"2","questiondecimalpoints":"-1","reviewattempt":"69904","reviewcorrectness":"4368","reviewmarks":"4368","reviewspecificfeedback":"4368","reviewgeneralfeedback":"4368","reviewrightanswer":"4368","reviewoverallfeedback":"4368","questionsperpage":"1","navmethod":"free","shufflequestions":"0","shuffleanswers":"1","questions":"1,2,0","sumgrades":"2.00000","grade":"10.00000","timecreated":"0","timemodified":"1379609177","password":"","subnet":"","browsersecurity":"-","delay1":"0","delay2":"0","showuserpicture":"0","showblocks":"0",' + 
+	        			   '"quizQuestionInstancesVOs":[' + 
+	        			     '{"id":"1","quiz":"1","question":"1","grade":"1.0000000",' +
+				            	'"questionVO":{"id":"1","category":"2","parent":"0","name":"essay question","questiontext":"<p>write an essay on<\/p>","questiontextformat":"1","generalfeedback":"","generalfeedbackformat":"1","defaultmark":"1.0000000","penalty":"0.0000000","qtype":"essay","length":"1","stamp":"localhost+131024181729+qukJsv","version":"localhost+131024181730+AlnGMS","hidden":"0","timecreated":"1382638649","timemodified":"1382638649","createdby":"2","modifiedby":"2",' +
+				              		'"questionAnswersVOs":[],"questionsummary":"write an essay on","_order":"","essay":true}},' +
+						     '{"id":"2","quiz":"1","question":"2","grade":"1.0000000",' +
+								'"questionVO":{"id":"2","category":"2","parent":"0","name":"true false","questiontext":"<p>capital of italy is rome?<\/p>","questiontextformat":"1","generalfeedback":"","generalfeedbackformat":"1","defaultmark":"1.0000000","penalty":"1.0000000","qtype":"truefalse","length":"1","stamp":"localhost+131024181759+CQercr","version":"localhost+131024181759+NvbNIZ","hidden":"0","timecreated":"1382638679","timemodified":"1382638679","createdby":"2","modifiedby":"2",' +
+									'"questionAnswersVOs":['+
+										'{"id":"1","question":"2","answer":"True","answerformat":"0","fraction":"1.0000000","feedback":"","feedbackformat":"1"},'+
+										'{"id":"2","question":"2","answer":"False","answerformat":"0","fraction":"0.0000000","feedback":"","feedbackformat":"1"}'+
+									'],"questionsummary":"capital of italy is rome?","_order":"","truefalse":true}}]}}';
+
+			quizProxy.insert(JSON.parse(qjson).quizVO);
     }
 }
 );

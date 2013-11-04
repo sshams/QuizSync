@@ -22,14 +22,24 @@ puremvc.define(
         });
     },
 
-    insert: function (questionAnswersVO, success, fail) {
-        var insertSQL = 'INSERT INTO question_answers (question, answer, answerformat, fraction, feedback, feedbackformat)' +
+    insert: function (questionAnswersVO) {
+        this.insertSQL = 'INSERT INTO question_answers (question, answer, answerformat, fraction, feedback, feedbackformat)' +
                         'VALUES (?,?,?,?,?,?)';
-        var values = [questionAnswersVO.question, questionAnswersVO.answer, questionAnswersVO.answerformat, questionAnswersVO.fraction,
+        this.values = [questionAnswersVO.question, questionAnswersVO.answer, questionAnswersVO.answerformat, questionAnswersVO.fraction,
                       questionAnswersVO.feedback, questionAnswersVO.feedbackformat];
-        this.database.transaction(function (t) {
-            t.executeSql(insertSQL, values, success, fail);
-        });
+        this.database.transaction(Delegate.create(this, this.insertTransaction));
+    },
+
+    insertTransaction: function(t) {
+      t.executeSql(this.insertSQL, this.values, Delegate.create(this, this.insertSuccess), Delegate.create(this, this.insertFail));
+    },    
+
+    insertSuccess: function(){
+        console.log('insert success');
+    },
+
+    insertFail: function(){
+        console.log('error adding questionAnswersVO');
     }
 },
 {
