@@ -10,7 +10,7 @@ puremvc.define(
 },
 {
 	onRegister: function() {
-		this.database = model.Moodle.getMoodle();
+	    this.database = model.Moodle.getConnection();
 		this.Question();
 		this.QuestionAnswers();
 		this.QuestionAttemptStepData();
@@ -34,6 +34,7 @@ puremvc.define(
 		this.QuestionUsages();
 		this.Quiz();
         this.QuizQuestionInstances();
+
 	},
     /*Start*/
     Question: function () {
@@ -532,7 +533,8 @@ puremvc.define(
                 });
             });
         }
-    }    
+    }
+
 /*End*/
 },
 {

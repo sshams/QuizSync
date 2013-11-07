@@ -9,7 +9,7 @@ puremvc.define(
 {
     NAME: 'Moodle',
 
-    getMoodle: function(){
+    getConnection: function(){
         try {
             if(window.openDatabase) {
                return window.openDatabase('Moodle', '1.0', 'moodle', 10 * 1024 * 1024);
