@@ -1,4 +1,4 @@
-﻿
+
 puremvc.define(
 {
     name: 'model.QuestionAnswersProxy',
@@ -23,9 +23,9 @@ puremvc.define(
     },
 
     insert: function (questionAnswersVO) {
-        this.insertSQL = 'INSERT INTO question_answers (question, answer, answerformat, fraction, feedback, feedbackformat)' +
+        var insertSQL = 'INSERT INTO question_answers (question, answer, answerformat, fraction, feedback, feedbackformat)' +
                         'VALUES (?,?,?,?,?,?)';
-        this.values = [questionAnswersVO.question, questionAnswersVO.answer, questionAnswersVO.answerformat, questionAnswersVO.fraction,
+        var values = [questionAnswersVO.question, questionAnswersVO.answer, questionAnswersVO.answerformat, questionAnswersVO.fraction,
                       questionAnswersVO.feedback, questionAnswersVO.feedbackformat];
         this.database.transaction(Delegate.create(this, this.insertTransaction));
     },
