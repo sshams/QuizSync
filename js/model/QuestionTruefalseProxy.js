@@ -1,4 +1,4 @@
-﻿
+
 puremvc.define(
 {
     name: 'model.QuestionTruefalseProxy',
@@ -17,8 +17,9 @@ puremvc.define(
     
     select: function (id, success, fail) {
         var insertSQL = "SELECT * FROM question_truefalse WHERE id = ?";
+        var values= [id];
         this.database.readTransaction(function (t) {
-            t.executeSql(insertSQL, [id], success, fail);
+            t.executeSql(insertSQL, values, success, fail);
         });
     },
 
