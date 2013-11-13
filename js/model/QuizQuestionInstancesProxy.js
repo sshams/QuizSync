@@ -12,15 +12,16 @@ puremvc.define(
     database: null,
 
     onRegister: function (id, success, fail) {
-        this.database = model.Moodle.getMoodle();
+        this.database = model.Moodle.getConnection();
         this.facade.registerProxy(new model.QuestionProxy());
         this.quizquestioninstancesVO;
     },
     
     select: function (id, success, fail) {
         var insertSQL = "SELECT * FROM quiz_question_instances WHERE id = ?";
+        var value = id;
         this.database.readTransaction(function (t) {
-            t.executeSql(insertSQL, [id], success, fail);
+            t.executeSql(insertSQL, [value], success, fail);
         });
     },
 

@@ -12,14 +12,20 @@ puremvc.define(
     database: null,
 
     onRegister: function (id, success, fail) {
-        this.database = model.Moodle.getMoodle();
+        this.database = model.Moodle.getConnection();
     },
     
     select: function (id, success, fail) {
         var insertSQL = "SELECT * FROM question_truefalse WHERE id = ?";
+<<<<<<< HEAD
         var values= [id];
         this.database.readTransaction(function (t) {
             t.executeSql(insertSQL, values, success, fail);
+=======
+        var value = id;
+        this.database.readTransaction(function (t) {
+            t.executeSql(insertSQL, [value], success, fail);
+>>>>>>> af46f3a931dcb0d54bb6a0a640ab0a7c4155e117
         });
     },
 

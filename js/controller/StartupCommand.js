@@ -82,7 +82,7 @@ puremvc.define(
 										'{"id":"2","question":"2","answer":"False","answerformat":"0","fraction":"0.0000000","feedback":"","feedbackformat":"1"}'+
 									'],"questionsummary":"capital of italy is rome?","_order":"","truefalse":true}}]}}';
 
-			quizProxy.insert(JSON.parse(qjson).quizVO);
+			//quizProxy.insert(JSON.parse(qjson).quizVO);
     }
 }
 );

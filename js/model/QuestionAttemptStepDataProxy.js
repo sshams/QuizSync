@@ -12,13 +12,14 @@ puremvc.define(
     database: null,
 
     onRegister: function (id, success, fail) {
-        this.database = model.Moodle.getMoodle();
+        this.database = model.Moodle.getConnection();
     },
     
     select: function (id, success, fail) {
         var insertSQL = "SELECT * FROM question_attempt_step_data WHERE id = ?";
+        var value = id;
         this.database.readTransaction(function (t) {
-            t.executeSql(insertSQL, [id], success, fail);
+            t.executeSql(insertSQL, [value], success, fail);
         });
     },
 
@@ -26,6 +27,15 @@ puremvc.define(
         var insertSQL = 'INSERT INTO question_attempt_step_data (attemptstepid, name, value)' +
                         'VALUES (?,?,?)';
         var values = [questionAttemptStepDataVO.attemptstepid, questionAttemptStepDataVO.name, questionAttemptStepDataVO.value];
+        this.database.transaction(function (t) {
+            t.executeSql(insertSQL, values, success, fail);
+        });
+    },
+
+    update: function (questionAttemptStepDataVO, success, fail) {
+        var insertSQL = 'UPDATE  question_attempt_step_data SET attemptstepid = ?, name = ?, value = ?' +
+                        'WHERE id = ?';
+        var values = [questionAttemptStepDataVO.attemptstepid, questionAttemptStepDataVO.name, questionAttemptStepDataVO.value, questionAttemptStepDataVO.id];
         this.database.transaction(function (t) {
             t.executeSql(insertSQL, values, success, fail);
         });
